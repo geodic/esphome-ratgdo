@@ -42,11 +42,7 @@ namespace ratgdo {
         this->input_gdo_pin_->pin_mode(gpio::FLAG_INPUT | gpio::FLAG_PULLUP);
 
         this->input_obst_pin_->setup();
-#ifdef USE_ESP32
-        this->input_obst_pin_->pin_mode(gpio::FLAG_INPUT | gpio::FLAG_PULLUP);
-#else
         this->input_obst_pin_->pin_mode(gpio::FLAG_INPUT);
-#endif
         this->input_obst_pin_->attach_interrupt(RATGDOStore::isr_obstruction, &this->isr_store_, gpio::INTERRUPT_FALLING_EDGE);
 
         this->protocol_->setup(this, &App.scheduler, this->input_gdo_pin_, this->output_gdo_pin_);
@@ -455,11 +451,7 @@ namespace ratgdo {
                 this->obstruction_sensor_detected_ = true;
             } else if (this->isr_store_.obstruction_low_count == 0) {
                 // if there have been no pulses the line is steady high or low
-#ifdef USE_ESP32
-                if (this->input_obst_pin_->digital_read()) {
-#else
                 if (!this->input_obst_pin_->digital_read()) {
-#endif
                     // asleep
                     last_asleep = current_millis;
                 } else {

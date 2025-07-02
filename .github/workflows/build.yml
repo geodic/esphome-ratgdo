@@ -78,7 +78,7 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
       - name: Build firmware
-        uses: ratgdo/esphome-build-action@main
+        uses: geodic/esphome-build-action@main
         id: esphome-build
         with:
           yaml-file: ${{ matrix.firmware.file }}

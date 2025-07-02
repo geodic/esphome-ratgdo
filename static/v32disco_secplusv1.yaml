@@ -27,11 +27,11 @@ esp32:
   board: esp32dev
 
 dashboard_import:
-  package_import_url: github://ratgdo/esphome-ratgdo/v32disco_secplusv1.yaml@main
+  package_import_url: github://geodic/esphome-ratgdo/v32disco_secplusv1.yaml@main
 
 packages:
   remote_package:
-    url: https://github.com/ratgdo/esphome-ratgdo
+    url: https://github.com/geodic/esphome-ratgdo
     ref: main
     files: [base_secplusv1.yaml]
     refresh: 1s
